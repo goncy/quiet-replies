@@ -1,0 +1,19 @@
+{
+  "name": "quiet-replies",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "esbuild background.js --bundle --format=esm --platform=browser --target=chrome120 --minify --outfile=dist/background.js",
+    "check": "node --check content.js && node --check popup.js && node --check background.js"
+  },
+  "dependencies": {
+    "ai": "7.0.107"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
+  }
+}

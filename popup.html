@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quiet Replies</title>
+  <style>
+    :root { color-scheme: light dark; font: 13px/1.5 system-ui, sans-serif; color: light-dark(#182126, #ebeff0); background: light-dark(#fafbf9, #121719); }
+    * { box-sizing: border-box; }
+    body { width: 340px; margin: 0; padding: 24px; }
+    header { display: flex; gap: 12px; align-items: center; margin-bottom: 24px; }
+    .logo { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 13px; color: light-dark(#267766, #87d7bd); background: light-dark(#e5f1eb, #1c322c); }
+    svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+    h1 { font-size: 17px; letter-spacing: -.5px; margin: 0; font-weight: 650; }
+    p { margin: 0; color: light-dark(#69746e, #9aa7a0); font-size: 12px; }
+    label, legend { font-weight: 600; }
+    .key { display: flex; margin: 8px 0 6px; border: 1px solid light-dark(#d5ddd6, #3a4540); border-radius: 9px; background: light-dark(#fff, #1b2220); overflow: hidden; }
+    .key:focus-within { outline: 2px solid light-dark(#378d72, #87d7bd); outline-offset: 2px; }
+    input[type="password"], input[type="text"] { width: 100%; min-width: 0; border: 0; padding: 11px 12px; background: transparent; color: inherit; outline: none; font: inherit; }
+    button { font: inherit; color: inherit; cursor: pointer; }
+    #reveal { border: 0; background: transparent; padding: 0 12px; font-size: 11px; font-weight: 600; color: light-dark(#437461, #9ecdb5); }
+    a { color: light-dark(#267766, #87d7bd); text-underline-offset: 3px; }
+    fieldset { padding: 0; border: 0; margin: 22px 0 0; }
+    legend { padding: 0; margin-bottom: 9px; }
+    .modes { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .mode { position: relative; display: block; cursor: pointer; }
+    .mode input { position: absolute; opacity: 0; }
+    .mode span { display: block; border: 1px solid light-dark(#d5ddd6, #3a4540); border-radius: 9px; padding: 10px 12px; font-weight: 550; }
+    .mode small { display: block; font-size: 11px; font-weight: 400; opacity: .7; margin-top: 2px; }
+    .mode input:checked + span { border-color: light-dark(#378d72, #87d7bd); color: light-dark(#246b55, #a5e3ca); background: light-dark(#edf5ef, #20372e); }
+    .mode input:focus-visible + span, button:focus-visible { outline: 2px solid #54a889; outline-offset: 2px; }
+    .note { margin-top: 12px; }
+    footer { border-top: 1px solid light-dark(#e1e6e0, #303b35); margin-top: 22px; padding-top: 13px; display: flex; justify-content: space-between; align-items: center; }
+    #status { font-size: 11px; color: light-dark(#437461, #9ecdb5); }
+  </style>
+  <script src="popup.js" defer></script>
+</head>
+<body>
+  <header>
+    <div class="logo" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v3m-8 7H2m20 0h-2M8 20h8a4 4 0 0 0 4-4V10a4 4 0 0 0-4-4h-5M4 9v7a4 4 0 0 0 4 4M9 12h.01M15 12h.01M9 16h6M3 3l18 18"/></svg></div>
+    <div><h1>Quiet Replies</h1><p>A little less noise on X.</p></div>
+  </header>
+  <label for="api-key">AI Gateway API key</label>
+  <div class="key">
+    <input id="api-key" type="password" placeholder="Paste your API key" autocomplete="off" spellcheck="false" aria-describedby="key-help">
+    <button id="reveal" type="button" aria-label="Show API key" aria-pressed="false">Show</button>
+  </div>
+  <p id="key-help">Stored on this device. <a href="https://vercel.com/docs/ai-gateway/authentication-and-security/authentication#api-key" target="_blank" rel="noreferrer">Get a key ↗</a></p>
+  <fieldset>
+    <legend>Possible bot replies</legend>
+    <div class="modes">
+      <label class="mode"><input type="radio" name="mode" value="mark" checked><span>Mark<small>Keep replies visible</small></span></label>
+      <label class="mode"><input type="radio" name="mode" value="collapse"><span>Collapse<small>Expand when curious</small></span></label>
+    </div>
+  </fieldset>
+  <p class="note">Applies when Jev estimates at least 50% likelihood of AI or bot authorship.</p>
+  <footer><p>Turn on from any tweet.</p><span id="status" role="status">Saved automatically</span></footer>
+</body>
+</html>

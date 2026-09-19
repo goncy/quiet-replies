@@ -1,0 +1,181 @@
+.xbf-toggle {
+  appearance: none;
+  box-sizing: border-box;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 34px;
+  align-self: center;
+  width: 34px;
+  height: 34px;
+  padding: 7px;
+  margin-block: 0;
+  margin-inline: auto 4px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #71767b;
+  cursor: pointer;
+}
+
+.xbf-toggle:hover {
+  color: #1d9bf0;
+  background: rgba(29,155,240,.12);
+}
+
+.xbf-toggle[aria-pressed="true"] {
+  color: #fff;
+  background: #1d9bf0;
+}
+
+.xbf-toggle[aria-pressed="true"]::after {
+  content: '✓';
+  position: absolute;
+  right: -1px;
+  bottom: -1px;
+  display: grid;
+  place-items: center;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #fff;
+  color: #0878c2;
+  font: bold 10px/1 system-ui,sans-serif;
+}
+
+.xbf-toggle[data-error] {
+  color: #fff;
+  background: #b97820;
+}
+
+.xbf-toggle svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: inherit;
+}
+
+.xbf-toggle[aria-busy="true"] svg {
+  animation: xbf-pulse 1s ease-in-out infinite alternate;
+}
+
+.xbf-ui svg, .xbf-toggle svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.xbf-flagged {
+  box-shadow: inset 0 0 0 1px rgba(198,139,50,.6);
+  background: rgba(198,139,50,.035);
+}
+
+article[data-testid="tweet"].xbf-flagged, article[data-testid="tweet"].xbf-flagged:hover {
+  outline: 1px solid rgba(198,139,50,.8) !important;
+  outline-offset: -1px !important;
+}
+
+.xbf-controls {
+  display: inline-flex;
+  align-items: center;
+  align-self: center;
+  flex: 0 0 auto;
+  gap: 6px;
+  margin-inline: auto 6px;
+  vertical-align: middle;
+  font: 11px/1.4 system-ui,sans-serif;
+}
+
+.xbf-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 1px 4px;
+  border-radius: 4px;
+  color: #71767b;
+  background: rgba(113,118,123,.1);
+  white-space: nowrap;
+  font: 11px/16px system-ui,sans-serif;
+}
+
+.xbf-badge[data-bot] {
+  color: #c68b32;
+  background: rgba(198,139,50,.12);
+}
+
+.xbf-badge svg {
+  width: 12px;
+  height: 12px;
+}
+
+.xbf-expand {
+  border: 0;
+  padding: 4px 0;
+  background: transparent;
+  font: 600 12px/1.4 system-ui,sans-serif;
+  color: #1d9bf0;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.xbf-summary {
+  display: none;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+  gap: 10px;
+  padding: 14px 16px;
+  font: 14px/1.4 system-ui,sans-serif;
+}
+
+.xbf-summary img {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.xbf-author {
+  color: inherit;
+  font-weight: 600;
+  min-width: 0;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.xbf-collapsed > :not(.xbf-summary) {
+  display: none !important;
+}
+
+.xbf-collapsed > .xbf-summary {
+  display: flex !important;
+}
+
+.xbf-error {
+  padding: 8px 16px;
+  font: 12px/1.5 system-ui,sans-serif;
+  color: #ad7420;
+}
+
+.xbf-toggle:focus-visible, .xbf-expand:focus-visible {
+  outline: 2px solid #1d9bf0;
+  outline-offset: 2px;
+}
+
+@keyframes xbf-pulse {
+  to {
+    opacity: .35;
+  }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .xbf-toggle[aria-busy="true"] svg {
+    animation: none;
+  }
+}

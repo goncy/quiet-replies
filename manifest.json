@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Quiet Replies",
+  "version": "1.0.0",
+  "description": "Mark or collapse replies that appear to be AI-written, using Jev through Vercel AI Gateway.",
+  "minimum_chrome_version": "123",
+  "permissions": ["storage"],
+  "host_permissions": ["https://x.com/*", "https://ai-gateway.vercel.sh/*"],
+  "background": {
+    "service_worker": "dist/background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "Quiet Replies",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [{
+    "matches": ["https://x.com/*"],
+    "css": ["content.css"],
+    "js": ["content.js"],
+    "run_at": "document_idle"
+  }]
+}

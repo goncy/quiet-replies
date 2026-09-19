@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.env*
+*.pem
+*.key
+*.log
+.DS_Store
+Thumbs.db
+.vercel/
